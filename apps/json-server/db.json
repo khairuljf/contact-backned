@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "name": "Umar faruk ali",
+      "email": "faruk1@gmail.com",
+      "id": "r3"
+    },
+    {
+      "id": "r2",
+      "name": "Rihan",
+      "email": "rihan@gmail.com"
+    },
+    {
+      "name": "sarwar Jahan",
+      "email": "sem@gmail.com",
+      "id": "r4"
+    }
+  ]
+}
