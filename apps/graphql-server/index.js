@@ -36,24 +36,31 @@ const resolvers = {
 
     Mutation :{
 
-        deleteContact(_, args){
-            return db.games.map((game)=>game.id !== args.id)
-        },
+         addContact: async (_, args)=>{
 
-        addContact(_, args){
-
-            let game = {
-                ...args.game,
+            let contact = {
+                ...args.contact,
                 id:Math.floor(Math.random() * 1000).toString()
             }
 
-            db.games.push(game)
+            
 
-            return game
+            try {
+                const response = await axios.post("http://localhost:3006/contacts", contact);
+
+                if (response.data) {
+                   return contact
+                }
+                } catch (error) {
+                    // Handle errors from the API call
+                    console.error("Error while making the API call:", error);
+                     return error
+                }
+
 
         },
 
-        updateContact(_, agrs){
+         updateContact(_, agrs){
 
             db.games = db.games.map((g)=>{
                 if(g.id===agrs.id){
@@ -63,7 +70,15 @@ const resolvers = {
             })
 
             return db.games
+        },
+
+        deleteContact(_, args){
+            return db.games.map((game)=>game.id !== args.id)
         }
+
+       
+
+       
     }
 }
 

@@ -22,6 +22,6 @@ export const typeDefs = `#graphql
 
     input AddContactInput{
         name:String!,
-        email:[String]
+        email:String!
     }
 `
