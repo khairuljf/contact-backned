@@ -47,16 +47,17 @@ const resolvers = {
       }
     },
 
-    updateContact: async (_, agrs) => {
+    updateContact: async (_, args) => {
+      let contact = {
+        ...args.edits,
+      };
       try {
         const response = await axios.put(
-          `http://localhost:3006/contacts/${agrs?.id}`,
-          agrs
+          `http://localhost:3006/contacts/${args?.id}`,
+          contact
         );
 
-        if (response.data) {
-          return response.data;
-        }
+        return response?.data;
       } catch (error) {
         // Handle errors from the API call
         console.error('Error while making the API call:', error);
@@ -71,8 +72,8 @@ const resolvers = {
         );
 
         if (response.data) {
-            const response = await axios.get(`http://localhost:3006/contacts`);
-            return  response.data;
+          const response = await axios.get(`http://localhost:3006/contacts`);
+          return response.data;
         }
       } catch (error) {
         // Handle errors from the API call
